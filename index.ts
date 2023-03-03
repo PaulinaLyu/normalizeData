@@ -70,3 +70,21 @@ const normalizeData = (unnormalizedData: IPost[]): IResultData => {
 };
 
 console.log(normalizeData(posts));
+
+//Answer
+// interface INormalized<T> {
+//   byId: {[key: string]: T}
+//   allIds: strin
+// };
+
+// const normalizeData = <T extends { id: string }>(unnormalizedData: T[]): INormalized<T> => {
+//   const byId = unnormalizedData.reduce<INormalized<T>['byId']>((data, item) => {
+//       data[item.id] = item;
+//       return data;
+//     }, {});
+//   const allIds = unnormalizedData.map((item) => item.id);
+  
+//   return { byId, allIds };
+// };
+
+// console.log(normalizeData(posts));

@@ -1,7 +1,3 @@
-// interface IResultData {
-//     byId: {},
-//     allIds:
-// }
 var posts = [
     {
         id: "62e69d5a5458aac0ed320b35",
@@ -39,24 +35,31 @@ var posts = [
         body: "maiores sed dolores similique labore et inventore etquasi temporibus esse sunt id eteos voluptatem aliquamratione corporis molestiae mollitia quia et magnam dolor"
     },
 ];
-var getDataByAllIds = function () { };
 var normalizeData = function (unnormalizedData) {
     var resultData = {};
     var byId = {};
-    // let allIds = [];
-    var allIds = unnormalizedData.map(function (item) {
-        item.id;
+    unnormalizedData.forEach(function (item) {
+        byId[item.id] = item;
     });
-    console.log(allIds);
+    var allIds = unnormalizedData.map(function (item) {
+        return item.id;
+    });
+    resultData.byId = byId;
+    resultData.allIds = allIds;
+    return resultData;
 };
 console.log(normalizeData(posts));
-/**
- * {
- *    byId: {
- *      62e69d5a5458aac0ed320b35: { id: '...', title: '...', body: '...' },
- *      62e69d5a5458aac0ed320b1c: { id: '...', title: '...', body: '...' },
- *      ...
- *    },
- *    allIds: ['62e69d5a5458aac0ed320b35', '62e69d5a5458aac0ed320b1c', ...]
- * }
- */
+//Answer
+// interface INormalized<T> {
+//   byId: {[key: string]: T}
+//   allIds: strin
+// };
+// const normalizeData = <T extends { id: string }>(unnormalizedData: T[]): INormalized<T> => {
+//   const byId = unnormalizedData.reduce<INormalized<T>['byId']>((data, item) => {
+//       data[item.id] = item;
+//       return data;
+//     }, {});
+//   const allIds = unnormalizedData.map((item) => item.id);
+//   return { byId, allIds };
+// };
+// console.log(normalizeData(posts));
